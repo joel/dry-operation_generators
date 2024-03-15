@@ -30,7 +30,7 @@ test/components/identity/operations/users/create/
 └── validation_test.rb
 ```
 
-Please check out [TestUnit Generators](https://github.com/orgs/joel/operation_generators-test_unit)
+Please check out [TestUnit Generators](https://github.com/orgs/joel/dry-operation_generators-test_unit)
 
 Concerning the volume on file needed, the generator will help to reduce the burden and lower the boilerplate of adding a new action. On top of that, it helps reduce typos and make code more unified.
 
@@ -145,7 +145,7 @@ There is a generator of generators you can use to quickly add a new generator:
 
 That provides the skeleton for the new generator. Note that the test suite should still run after the generated files.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/orgs/joel/operation_generators. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/joel/operation_generators/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/orgs/joel/dry-operation_generators. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/joel/dry-operation_generators/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -153,4 +153,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Isms project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joel/operation_generators/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Isms project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joel/dry-operation_generators/blob/main/CODE_OF_CONDUCT.md).
