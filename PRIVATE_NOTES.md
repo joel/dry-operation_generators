@@ -4,7 +4,7 @@
 
 # Publish Gem
 
-> gem push uuid_v7-0.1.0.gem
+> gem push dry-operation_generators-0.1.0.gem
 
 # Tag
 
