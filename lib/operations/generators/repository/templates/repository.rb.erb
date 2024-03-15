@@ -1,0 +1,29 @@
+# frozen_string_literal: true
+
+require "dry/transaction/operation"
+require "dry/monads"
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Repository
+
+      include Dry::Transaction::Operation
+
+      def call(input)
+        <%- case verb -%>
+        <%- when "create" -%>
+        instance = <%= class_name %>.new
+        <%- when /update|destroy/ -%>
+        instance = <%= class_name %>.find_by!(uuid: input[:id])
+        <%- end -%>
+
+        if instance
+          Success({instance:, input:})
+        else
+          Failure({input:})
+        end
+      end
+
+    end
+  end
+end

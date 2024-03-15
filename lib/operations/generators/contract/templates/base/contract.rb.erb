@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+# The domain validation logic is in the contract, not the schema.
+
+module <%= class_name.pluralize %>
+  module Base
+    class Contract < ApplicationContract
+
+      # Add common rules here
+      # rule(:email).validate(:email_format)
+
+    end
+  end
+end

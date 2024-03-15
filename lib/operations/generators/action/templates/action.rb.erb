@@ -1,0 +1,50 @@
+# frozen_string_literal: true
+
+require "dry/transaction/operation"
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Action
+
+      include Dry::Transaction::Operation
+
+      def call(params)
+        instance, input = params.values_at(:instance, :input)
+        <%- case verb -%>
+        <%- when /create|update/ -%>
+        <%- if @reference_parsed_fields.empty? %>
+        attributes = input.dup # use except or slice to filter out unwanted attributes
+        <%- else %>
+        attributes = input.dup.except(
+          :id, :created_at, :updated_at, <%= @reference_parsed_fields.map { |f| ":#{f.foreign_key}" }.join(", ") %>
+        ) # use except or slice to filter out unwanted attributes
+        <%- end %>
+        # Recommended to use slice to filter out unwanted attributes
+        # attributes = input.dup.slice(
+        #   TODO: whitelisted attributes here
+        # )
+
+        instance.assign_attributes(attributes)
+
+        <%- @reference_parsed_fields.each do |field| -%>
+        instance.<%= field.name %> = <%= field.class_name %>.find_by(<%= Operations.configuration.primary_key_name %>: input[:<%= field.foreign_key %>])
+        <%- end -%>
+        <%- end -%>
+
+        # Here comes the Busniness Logic
+
+        <%- case verb -%>
+        <%- when "destroy" -%>
+        if instance.destroy
+        <%- else %>
+        if instance.save
+        <%- end -%>
+          Success(instance)
+        else
+          Failure(instance)
+        end
+      end
+
+    end
+  end
+end

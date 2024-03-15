@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+require "dry/transaction/operation"
+require "dry/validation"
+require "dry/validation/contract"
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Validation
+
+      include Dry::Transaction::Operation
+
+      def call(input)
+        params = Contract.new.call(input)
+
+        return Failure(params.errors) if params.failure?
+
+        Success(input)
+      end
+
+    end
+  end
+end

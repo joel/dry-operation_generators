@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Contract < Dry::Validation::Contract
+
+      params(Base::Schema, Schema)
+
+      # Add domain validation rules here
+
+      <%- @reference_parsed_fields.each do |field| -%>
+      rule(:<%= field.foreign_key %>) do
+        key.failure("must exist") if <%= field.class_name %>.where(<%= Operations.configuration.primary_key_name %>: value).none?
+      end
+      <%- end -%>
+
+    end
+  end
+end

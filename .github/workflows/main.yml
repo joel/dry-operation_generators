@@ -1,0 +1,35 @@
+name: Ruby
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.3.0'
+
+    steps:
+      -
+        name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '1'
+      -
+        name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      -
+        name: Install Dependencies
+        run: bundle install --jobs 4 --retry 3
+      -
+        name: Run the default task
+        run: bundle exec rake

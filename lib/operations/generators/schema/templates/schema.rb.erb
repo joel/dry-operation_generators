@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+# Sanitizes, coerces and type-checks input data
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    Schema = Dry::Schema.Params do
+      <%- if verb =~ /update|all/ -%>
+      required(:id).filled(:<%= Operations.configuration.primary_key_type %>)
+      <%- end -%>
+      <%- @regular_parsed_fields.each do |field| -%>
+      <%= field.requirement %>(:<%= field.name %>).filled(:<%= field.type %>)
+      <%- end -%>
+      <%- @reference_parsed_fields.each do |field| -%>
+      <%= field.requirement %>(:<%= field.foreign_key %>).filled(:<%= Operations.configuration.primary_key_type %>)
+      <%- end -%>
+    end
+  end
+end

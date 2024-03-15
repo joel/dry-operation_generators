@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require "operations"
+
+Operations.configure do |config|
+  # config.primary_key_name   = :id       # default :id
+  # config.primary_key_type   = :integer  # default :integer
+  # config.foreign_key_suffix = "_id"     # default "_id"
+end
+
+require "operations/generators/install_generator"    if defined?(Dry)
+require "operations/generators/scaffold_generator"   if defined?(Dry)
+require "operations/generators/schema_generator"     if defined?(Dry::Schema)
+require "operations/generators/action_generator"     if defined?(Dry::Transaction)
+require "operations/generators/contract_generator"   if defined?(Dry::Validation)
+require "operations/generators/validation_generator" if defined?(Dry::Validation)
+require "operations/generators/repository_generator" if defined?(Dry::Transaction)
+require "operations/generators/register_generator"   if defined?(Dry::Container)
+require "operations/generators/operation_generator"  if defined?(Dry::Transaction)

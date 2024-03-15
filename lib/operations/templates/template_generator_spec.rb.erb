@@ -1,0 +1,54 @@
+# frozen_string_literal: true
+
+module Operations
+  module Generators
+    RSpec.describe <%= class_name %>Generator, type: :generator do
+      setup_default_destination
+
+      tests described_class
+
+      let(:<%= singular_name %>_path) { "app/operations/users/create/<%= singular_name %>.rb" }
+
+      subject(:<%= singular_name %>_generator) do
+        run_generator(
+          %w[
+            user
+            create
+          ]
+        )
+      end
+
+      it "copy templates" do
+        <%= singular_name %>_generator
+
+        expect(File).to exist("#{destination_root}/#{<%= singular_name %>_path}")
+      end
+
+      it "uses the expected template files" do
+        <%= singular_name %>_generator
+
+        expect(content_for(<%= singular_name %>_path)).to match(/This is <%= singular_name %>.rb.erb/)
+      end
+
+      context "with component option" do
+        let(:<%= singular_name %>_path) { "components/identity/operations/users/create/<%= singular_name %>.rb" }
+
+        subject(:<%= singular_name %>_generator) do
+          run_generator(
+            %w[
+              user
+              create
+              --component identity/users
+            ]
+          )
+        end
+
+        it "copy templates" do
+          <%= singular_name %>_generator
+
+          expect(File).to exist("#{destination_root}/#{<%= singular_name %>_path}")
+        end
+      end
+    end
+  end
+end

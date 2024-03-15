@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+require "dry/transaction/operation"
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Operation
+
+      include Dry::Transaction(container: Register)
+
+      <%- case verb -%>
+      <%- when /create|update/ -%>
+      step :validate_inputs,   with: "<%= plural_name %>.<%= verb %>.validation"
+      <%- end -%>
+      <%- case verb -%>
+      <%- when "create" -%>
+      step :initialize_record, with: "<%= plural_name %>.<%= verb %>.repository"
+      <%- when /update|destroy/ -%>
+      step :fecth_record, with: "<%= plural_name %>.<%= verb %>.repository"
+      <%- end -%>
+
+      step :<%= verb %>_record,     with: "<%= plural_name %>.<%= verb %>.action"
+
+    end
+  end
+end

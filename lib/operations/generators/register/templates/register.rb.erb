@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+module <%= class_name.pluralize %>
+  module <%= verb.capitalize %>
+    class Register
+
+      extend Dry::Container::Mixin
+
+      namespace "<%= plural_name %>.<%= verb %>" do
+        <%- unless verb == "destroy" -%>
+        register "validation" do
+          Validation.new
+        end
+        <%- end -%>
+
+        register "repository" do
+          Repository.new
+        end
+
+        register "action" do
+          Action.new
+        end
+      end
+
+    end
+  end
+end
