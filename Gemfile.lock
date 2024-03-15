@@ -1,13 +1,8 @@
 PATH
-  remote: ../operation_generators-base
-  specs:
-    dry-operation_generators-base (0.1.0)
-      activesupport (~> 7.0)
-
-PATH
   remote: .
   specs:
     dry-operation_generators (0.1.0)
+      dry-operation_generators-base
       rails
       zeitwerk
 
@@ -101,6 +96,8 @@ GEM
     diff-lcs (1.5.1)
     drb (2.2.0)
       ruby2_keywords
+    dry-operation_generators-base (0.1.0)
+      activesupport (~> 7.0)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -273,7 +270,6 @@ PLATFORMS
 
 DEPENDENCIES
   dry-operation_generators!
-  dry-operation_generators-base!
   pry
   pry-byebug
   rake
