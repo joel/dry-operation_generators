@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "generators/schema/schema_generator"
+require "generators/operations/schema/schema_generator"
 
 module Operations
   module Generators
