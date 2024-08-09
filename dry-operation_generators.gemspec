@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "lib/dry_operation_generators/version"
+require_relative "lib/dry-operation_generators/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "dry_operation_generators"
+  spec.name = "dry-operation_generators"
   spec.version = DryOperationGenerators::VERSION
   spec.authors = ["Joel AZEMAR"]
   spec.email = ["joel.azemar@gmail.com"]
@@ -33,7 +33,8 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "zeitwerk"
+  # spec.add_dependency "zeitwerk"
+  spec.add_dependency "rails"
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 

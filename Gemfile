@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in dry_operation_generators.gemspec
+# Specify your gem's dependencies in dry-operation_generators.gemspec
 gemspec
 
 gem "rubocop-performance"
@@ -14,3 +14,6 @@ gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
 
 gem "rubocop", "~> 1.21"
+
+gem "dry-operation_generators-base", path: "../../../../Generators/Public/dry-operation_generators-base",
+                                     require: "operations/base"

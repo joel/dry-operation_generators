@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require "dry_operation_generators"
+require "dry-operation_generators"
+
+Dir["#{File.dirname(__FILE__)}/support/pre/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -13,3 +15,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+Dir["#{File.dirname(__FILE__)}/support/post/**/*.rb"].each { |f| require f }
