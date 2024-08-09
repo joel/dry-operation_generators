@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dry-operation_generators (0.1.0)
+    dry-operation_generators (0.2.0.alpha1)
       rails
 
 GEM
